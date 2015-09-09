@@ -1,0 +1,3 @@
+[submodule "vendor/tini"]
+	path = vendor/tini
+	url = https://github.com/krallin/tini

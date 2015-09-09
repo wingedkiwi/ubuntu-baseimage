@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "script-test: rc.local executed"
+
+exit 0
