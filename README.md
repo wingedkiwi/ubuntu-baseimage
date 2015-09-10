@@ -43,6 +43,7 @@ _ubuntu-baseimage_ solves the above problems using an [Automated Build](https://
  * [Adding additional daemons](#adding_additional_daemons)
     * [Starting order](#starting_order)
     * [Wait until daemon is fully up](#wait_until)
+ * [Disable daemons](#disable_daemons)
  * [Running scripts during container startup](#running_startup_scripts)
  * [Environment variables](#environment_variables)
     * [Centrally defining your own environment variables](#envvar_central_definition)
@@ -109,6 +110,12 @@ Example `memcached-check.sh` file:
 And in `Dockerfile`:
 
     ADD memcached-check.sh /etc/service/30-memcached/check
+
+<a name="disable_daemons"></a>
+### Disable Daemons
+Any daemon can be disabled by adding a `disabled` file to the corresponding service folder.
+
+    RUN touch /etc/service/30-memcached/disabled
 
 <a name="running_startup_scripts"></a>
 ### Running scripts during container startup
