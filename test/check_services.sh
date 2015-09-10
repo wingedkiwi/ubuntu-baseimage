@@ -7,5 +7,6 @@ do
     /usr/bin/sv status /etc/service/${service} | grep run:
 done
 
-# Check if dummy service is down
-/usr/bin/sv status /etc/service/30-dummy | grep down:
+# Check if disabled_service is down
+/usr/bin/sv status /etc/service/30-disabled_service| grep down:
+echo check_services.sh: success
