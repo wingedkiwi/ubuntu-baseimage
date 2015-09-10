@@ -1,6 +1,6 @@
 # A minimal Ubuntu base image that is Predictable and stays Up To Date
 
-_ubuntu-baseimage_ is docker base image based on the work of [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker) and inherits the following features:
+_ubuntu-baseimage_ is a docker base image based on the work of [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker) and inherits the following features:
 
   * [A correct Init system solving the PID 1 problem](https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/).
   * Scripts in `/etc/my_init.d/` are started in lexical order.
@@ -55,7 +55,7 @@ _ubuntu-baseimage_ solves the above problems using an [Automated Build](https://
 <a name="getting_started"></a>
 ### Getting started
 
-The image is called `wingedkiwi/ubuntu-baseimage`, and is available on the Docker registry.
+The image is called `wingedkiwi/ubuntu-baseimage`, and is available on the [Docker registry](https://hub.docker.com/r/wingedkiwi/ubuntu-baseimage/).
 
     # Use wingedkiwi/ubuntu-baseimage as base image.
     FROM wingedkiwi/ubuntu-baseimage:<VERSION>
@@ -226,5 +226,5 @@ If you are sure that your environment variables don't contain sensitive data, th
 <a name="upgrading_os"></a>
 ### Upgrading the operating system inside the container
 
-Upgrading inside the container would violate docker best practices. _ubuntu-baseimage_ is always kept up to date using an [Automated Build](https://hub.docker.com/r/wingedkiwi/ubuntu-baseimage/) on Docker Hub. Simply rebuilt your container using this baseimage.
+Upgrading inside the container would violate docker best practices. _ubuntu-baseimage_ is always kept up to date using an [Automated Build](https://hub.docker.com/r/wingedkiwi/ubuntu-baseimage/) on Docker Hub. Simply rebuild your container using this base image.
 
