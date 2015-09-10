@@ -1,4 +1,4 @@
-NAME = wingedkiwi/baseimage
+NAME = wingedkiwi/ubuntu-baseimage
 VERSION = 0.10.0
 
 .PHONY: all build test tag_release

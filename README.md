@@ -1,6 +1,6 @@
 # A minimal Ubuntu base image that is Predictable and stays Up To Date
 
-This image is based on the work of [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker) and inherits the following features:
+_ubuntu-baseimage_ is docker base image based on the work of [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker) and inherits the following features:
 
   * [A correct Init system solving the PID 1 problem](https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/).
   * Scripts in `/etc/my_init.d/` are started in lexical order.
@@ -11,9 +11,9 @@ This image is based on the work of [phusion/baseimage-docker](https://github.com
   * Ability to define additonal daemons in `/etc/service`.
   * Lightweight sudo alternative at `/sbin/setuser`
 
-Moreover this image brings the following improvements:
+Moreover _ubuntu-baseimage_ brings the following improvements:
 
- * Provides an [Automated Build](https://hub.docker.com/r/wingedkiwi/baseimage-docker/) that stays up to date and
+ * Provides an [Automated Build](https://hub.docker.com/r/wingedkiwi/ubuntu-baseimage/) that stays up to date and
  eleminates the need to run `apt-get upgrade`. (See [dockerfile best-practices](https://docs.docker.com/articles/dockerfile_best-practices/#run))
  * Services are started in lexical order.
  * Services are terminated in reverse lexical order.
@@ -25,9 +25,9 @@ Changes due to personal choice:
 
  * Removes sshd service as it is not essential (see [nsenter](https://blog.docker.com/tag/nsenter/)).
 
-This image introduces backward-incompatible changes to [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker).
+_ubuntu-baseimage_ introduces backward-incompatible changes to [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker).
 
-## The problems this image tries to solve
+## The problems _ubuntu-baseimage_ tries to solve
 
 Even though [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker) claims that it _does everything right_, it still leaves us with some unsolved problems:
 
@@ -35,9 +35,9 @@ Even though [phusion/baseimage-docker](https://github.com/phusion/baseimage-dock
   * Naturally services/daemons depend on each other. _phusion/baseimage-docker_ starts and stops all daemons at the same time causing unpredictable behavior and failure.
   * _phusion/baseimage-docker_ executes the user provided command without knowing if the required services/daemons are up and running.
 
-This image solves the above problems using an [Automated Build](https://hub.docker.com/r/wingedkiwi/baseimage-docker/) and a predictable boot and shutdown mechanism.
+_ubuntu-baseimage_ solves the above problems using an [Automated Build](https://hub.docker.com/r/wingedkiwi/ubuntu-baseimage/) and a predictable boot and shutdown mechanism.
 
-## Using baseimage-docker as base image
+## Using _ubuntu-baseimage_ as base image
 
  * [Getting started](#getting_started)
  * [Adding additional daemons](#adding_additional_daemons)
@@ -54,10 +54,10 @@ This image solves the above problems using an [Automated Build](https://hub.dock
 <a name="getting_started"></a>
 ### Getting started
 
-The image is called `wingedkiwi/baseimage`, and is available on the Docker registry.
+The image is called `wingedkiwi/ubuntu-baseimage`, and is available on the Docker registry.
 
-    # Use wingedkiwi/baseimage as base image.
-    FROM wingedkiwi/baseimage:<VERSION>
+    # Use wingedkiwi/ubuntu-baseimage as base image.
+    FROM wingedkiwi/ubuntu-baseimage:<VERSION>
 
     # Put your own build instructions here.
 
@@ -113,7 +113,7 @@ And in `Dockerfile`:
 <a name="running_startup_scripts"></a>
 ### Running scripts during container startup
 
-The baseimage-docker init system, `/sbin/my_init`, runs the following scripts during startup, in the following order:
+The _ubuntu-baseimage_ init system, `/sbin/my_init`, runs the following scripts during startup, in the following order:
 
  * All executable scripts in `/etc/my_init.d`, if this directory exists. The scripts are run in lexicographic order.
  * The script `/etc/rc.local`, if this file exists.
@@ -183,7 +183,7 @@ Here is an example shell session showing you how the dumps look like:
 
     $ docker run -t -i \
       --env FOO=bar --env HELLO='my beautiful world' \
-      wingedkiwi/baseimage:<VERSION> bash -l
+      wingedkiwi/ubuntu-baseimage:<VERSION> bash -l
     ...
     *** Running bash -l...
     # ls /etc/container_environment
@@ -219,5 +219,5 @@ If you are sure that your environment variables don't contain sensitive data, th
 <a name="upgrading_os"></a>
 ### Upgrading the operating system inside the container
 
-Upgrading inside the container would violate docker best practices. This baseimage is always kept up to date using an [Automated Build](https://hub.docker.com/r/wingedkiwi/baseimage-docker/) on Docker Hub. Simply rebuilt your container using this baseimage.
+Upgrading inside the container would violate docker best practices. _ubuntu-baseimage_ is always kept up to date using an [Automated Build](https://hub.docker.com/r/wingedkiwi/ubuntu-baseimage/) on Docker Hub. Simply rebuilt your container using this baseimage.
 
