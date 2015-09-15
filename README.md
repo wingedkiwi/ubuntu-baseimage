@@ -1,5 +1,8 @@
 # A minimal Ubuntu base image that is Predictable and stays Up To Date
 
+[![](https://badge.imagelayers.io/wingedkiwi/ubuntu-baseimage:master.svg)](https://imagelayers.io/?images=wingedkiwi/ubuntu-baseimage:master 'Get your own badge on imagelayers.io')
+
+
 _ubuntu-baseimage_ is a docker base image based on the work of [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker) and inherits the following features:
 
   * [A correct Init system solving the PID 1 problem](https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/).
