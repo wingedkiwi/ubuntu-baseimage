@@ -17,7 +17,7 @@ output=$(docker run \
            -v ${DIR}/disabled_service:/etc/service/30-disabled_service \
            -v ${DIR}/my_init.d:/etc/my_init.d \
            -v ${DIR}/rc.local:/etc/rc.local \
-           --rm -it ${NAME}:${VERSION} /test/check_services.sh)
+           --rm -t ${NAME}:${VERSION} /test/check_services.sh)
 set -e
 
 echo -e "${output}"
