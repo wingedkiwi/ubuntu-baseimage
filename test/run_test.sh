@@ -13,17 +13,17 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 set +e
 output=$(docker run \
-           -v ${DIR}:/test \
-           -v ${DIR}/disabled_service:/etc/service/30-disabled_service \
-           -v ${DIR}/my_init.d:/etc/my_init.d \
-           -v ${DIR}/rc.local:/etc/rc.local \
+           -v "${DIR}":/test \
+           -v "${DIR}/disabled_service":/etc/service/30-disabled_service \
+           -v "${DIR}/my_init.d":/etc/my_init.d \
+           -v "${DIR}/rc.local":/etc/rc.local \
            --rm -t ${NAME}:${VERSION} /test/check_services.sh)
 set -e
 
 echo -e "${output}"
 
 echo "Remove files created by runit"
-sudo rm -rf ${DIR}/disabled_service/supervise ${DIR}/disabled_service/down
+sudo rm -rf "${DIR}/disabled_service/supervise" "${DIR}/disabled_service/down"
 
 echo "Check if boot scripts were started"
 script_list=$(echo -e "${output}" | grep "script-test:" | awk  -F" " '{ print $2 }')
@@ -51,4 +51,4 @@ echo "Check if check_services.sh was executed successfully"
 echo -e "${output}" | grep "check_services.sh: success" > /dev/null
 
 echo "Test setuser"
-docker run -v ${DIR}:/test --rm -it ${NAME}:${VERSION} setuser www-data /test/check_setuser.sh
+docker run -v "${DIR}":/test --rm -it ${NAME}:${VERSION} setuser www-data /test/check_setuser.sh
