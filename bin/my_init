@@ -276,7 +276,7 @@ def shutdown_runit_services():
         if os.path.isdir(folder):
             if not os.path.isfile(folder + "/disabled" ):
                 info("Stop %s..." % name)
-                os.system("/usr/bin/sv down " + name)
+                os.system("/usr/bin/sv stop " + name)
 
 def main(args):
     import_envvars(False, False)
